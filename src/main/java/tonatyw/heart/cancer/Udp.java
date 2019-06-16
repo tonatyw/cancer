@@ -1,4 +1,4 @@
-package tonatyw.heart;
+package tonatyw.heart.cancer;
 
 import java.net.DatagramSocket;
 import java.net.SocketException;
@@ -8,10 +8,10 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang.StringUtils;
 
-import tonatyw.heart.base.AbstractAgreement;
-import tonatyw.heart.thread.Receive;
-import tonatyw.heart.thread.Send;
-import tonatyw.heart.thread.StatusThread;
+import tonatyw.heart.cancer.base.AbstractAgreement;
+import tonatyw.heart.cancer.thread.Receive;
+import tonatyw.heart.cancer.thread.Send;
+import tonatyw.heart.cancer.thread.StatusThread;
 
 public class Udp extends AbstractAgreement{
 	private DatagramSocket socket;

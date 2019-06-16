@@ -1,6 +1,6 @@
-package tonatyw.heart.thread;
+package tonatyw.heart.cancer.thread;
 
-import tonatyw.heart.HeartBox;
+import tonatyw.heart.cancer.HeartBox;
 
 /**
  * 修改设备状态

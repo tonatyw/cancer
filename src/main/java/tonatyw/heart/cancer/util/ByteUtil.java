@@ -1,4 +1,4 @@
-package tonatyw.heart.util;
+package tonatyw.heart.cancer.util;
 /**
  * 字节工具类
  * @ClassName ByteUtil

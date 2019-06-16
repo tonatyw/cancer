@@ -1,6 +1,6 @@
-package tonatyw.heart.base;
+package tonatyw.heart.cancer.base;
 
-import tonatyw.heart.HeartBox;
+import tonatyw.heart.cancer.HeartBox;
 
 /**
  * 协议抽象类

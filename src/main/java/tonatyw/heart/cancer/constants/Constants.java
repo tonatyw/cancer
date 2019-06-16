@@ -1,4 +1,4 @@
-package tonatyw.heart.constants;
+package tonatyw.heart.cancer.constants;
 /**
  * 常量类
  * @ClassName Constants
