@@ -26,8 +26,9 @@ public class AckHandle implements BaseHandle{
 		String verifySign = DigestUtils.md5Hex(json.getString(Constants.HeartMessage.MSG)==null?"":json.getString(Constants.HeartMessage.MSG));
 		if(StringUtils.equals(sign, verifySign)){//数据完整
 			// 从缓存删除ack数据
-			heartBox.getAckMap().remove(sign);
-			
+			if(heartBox.getAckMap().containsKey(sign)){
+				heartBox.getAckMap().remove(sign);
+			}
 			// 判断是否需要同步数据
 			String msg = json.getString(Constants.HeartMessage.MSG);
 			if(StringUtils.isNotEmpty(msg)){//存在同步数据 进行数据同步

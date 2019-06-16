@@ -38,7 +38,7 @@ public class HeartBox {
 	/** 收集心跳传过来的额外数据集合 */
 	private ArrayBlockingQueue<String> receiveQueue = new ArrayBlockingQueue<String>(1000, true);
 	/** 消息ack */
-	private Map<String,String> ackMap = new HashMap<String,String>();
+	private Map<String,String> ackMap = new ConcurrentHashMap<String,String>();
 	/** 在线设备列表 key->ip:port value->status 1:在线 0:不在线*/
 	private Map<String,Integer> deivceMap = new HashMap<String,Integer>();
 	/** 临时在线设备状态 */

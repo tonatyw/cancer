@@ -37,6 +37,19 @@ public class Udp extends AbstractAgreement{
 		}
 	}
 	
+	public Udp(String ip,int port,long timeout,HeartBox heartBoxOut){
+		// 调用父类初始化参数
+		super(ip,port,timeout,heartBoxOut);
+		// 初始化参数
+		try {
+			socket = new DatagramSocket(port);
+			// 将连接存入heartBox
+			heartBox.setSocket(socket);
+		} catch (SocketException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public void begin() {
 		// 等待xms 执行 状态变更任务

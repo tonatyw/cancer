@@ -23,6 +23,18 @@ public abstract class AbstractAgreement {
 		heartBox.setpPort(pPort);
 		heartBox.setTimeout(timeout);
 	}
+	/**
+	 * 自动封装参数 还未实现
+	 * @param obj
+	 * @time 2019年6月10日-上午11:31:30
+	 * @todo 自动封装参数 还未实现
+	 */
+	public AbstractAgreement(String ip,int port,long timeout,HeartBox heartBoxOut){
+		this.heartBox = heartBoxOut;
+		heartBox.setIp(ip);
+		heartBox.setPort(port);
+		heartBox.setTimeout(timeout);
+	}
 	/** 心跳盒子 存储心跳相关信息 */
 	protected HeartBox heartBox;
 	public abstract void begin();

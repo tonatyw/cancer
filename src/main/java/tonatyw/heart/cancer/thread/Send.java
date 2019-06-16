@@ -33,20 +33,26 @@ public class Send implements Runnable{
 	public void run() {
 		// 组装数据
 		JSONObject json = new JSONObject();
-		String msg = heartBox.getMsgQueueMap().get(heartBox.getpIp()).poll();
-		msg = msg==null?"":msg;
-		json.put(Constants.HeartMessage.MSG, msg);
-		json.put(Constants.HeartMessage.SIGN, DigestUtils.md5Hex(msg));
-		json.put(Constants.HeartMessage.MSGTYPE, 1);
-		try {
+		String msg = "";
+		String jsonStr = "";
+		if(heartBox.getAckMap().isEmpty()){
+			msg = heartBox.getMsgQueueMap().get(heartBox.getpIp()).poll();
+			msg = msg==null?"":msg;
+			json.put(Constants.HeartMessage.MSG, msg);
+			json.put(Constants.HeartMessage.SIGN, DigestUtils.md5Hex(msg));
+			json.put(Constants.HeartMessage.MSGTYPE, 1);
 			// 发送数据
-			String jsonStr = json.toJSONString();
+			jsonStr = json.toJSONString();
+			heartBox.getAckMap().put(json.getString(Constants.HeartMessage.SIGN), jsonStr);
+		}else{
+			// 如果在取数据时ack接收到消息删除了该消息，无视被删除的消息，继续发送
+			jsonStr = heartBox.getAckMap().entrySet().iterator().next().getValue();
+		}
+		try{
 			byte[] bytes = jsonStr.getBytes(Constants.HeartMessage.ENCODING_UTF_8);
 			DatagramPacket dp = new DatagramPacket(bytes, bytes.length, new InetSocketAddress(heartBox.getpIp(), heartBox.getpPort()));
 			socket.send(dp);
-			// 将数据存入缓冲队列,如果返回确定收到，将队列删除
-			heartBox.getAckMap().put(json.getString(Constants.HeartMessage.SIGN), jsonStr);
-		} catch (Exception e) {
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
