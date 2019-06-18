@@ -11,7 +11,7 @@ int port = 8108;
 String pIp = "192.168.1.100";
 // 父级端口
 int pPort = 8109;
-// 初始化一个心跳盒子，用于装载心跳间的
+// 初始化一个心跳盒子，用于装载心跳间的信息
 HeartBox heartBox = new HeartBox();
 // 启动心跳线程
 new Udp(ip, port, pIp, pPort, timeout, heartBox).begin();
