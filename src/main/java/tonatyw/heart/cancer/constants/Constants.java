@@ -37,5 +37,7 @@ public class Constants {
 		public static String ENCODING_UTF_8 = "utf-8";
 		/** 设备集合key分隔符 */
 		public static String IP_PORT_SPLIT = ":";
+		/** 需要删除的sign */
+		public static String REMOVE_SIGN = "removeSign";
 	}
 }

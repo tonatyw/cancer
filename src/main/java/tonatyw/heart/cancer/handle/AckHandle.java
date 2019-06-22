@@ -23,11 +23,12 @@ public class AckHandle implements BaseHandle{
 		heartBox.getTmpDeviceMap().put(json.getString(Constants.HeartMessage.RECEIVE_IP).concat(Constants.HeartMessage.IP_PORT_SPLIT).concat(json.getString(Constants.HeartMessage.RECEIVE_PORT)), 1);
 		// 获取完整性校验字段
 		String sign = json.getString(Constants.HeartMessage.SIGN);
+		String removeSign = json.getString(Constants.HeartMessage.REMOVE_SIGN);
 		String verifySign = DigestUtils.md5Hex(json.getString(Constants.HeartMessage.MSG)==null?"":json.getString(Constants.HeartMessage.MSG));
 		if(StringUtils.equals(sign, verifySign)){//数据完整
 			// 从缓存删除ack数据
-			if(heartBox.getAckMap().containsKey(sign)){
-				heartBox.getAckMap().remove(sign);
+			if(heartBox.getAckMap().containsKey(removeSign)){
+				heartBox.getAckMap().remove(removeSign);
 			}
 			// 判断是否需要同步数据
 			String msg = json.getString(Constants.HeartMessage.MSG);

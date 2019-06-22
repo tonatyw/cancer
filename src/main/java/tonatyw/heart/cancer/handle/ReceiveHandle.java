@@ -56,7 +56,7 @@ public class ReceiveHandle implements BaseHandle{
 					heartBox.getMsgQueueMap().put(ip, new ArrayBlockingQueue<String>(1000, true));
 				}
 				json.put(Constants.HeartMessage.SIGN, DigestUtils.md5Hex(json.getString(Constants.HeartMessage.MSG)==null?"":json.getString(Constants.HeartMessage.MSG)));
-				
+				json.put("removeSign", sign);
 				byte[] bytes = json.toJSONString().getBytes(Constants.HeartMessage.ENCODING_UTF_8);
 				DatagramPacket dp = new DatagramPacket(bytes, bytes.length, new InetSocketAddress(ip, port));
 				socket.send(dp);
