@@ -1,6 +1,12 @@
 # cancer
 这是一个实现心跳机制的数据同步框架
 
+# 数据流转图
+![image](https://github.com/tonatyw/image/blob/master/cancer/data.png)
+
++ msgQueue: 预同步数据队列
++ receiveQueue: 已同步数据队列
++ ackMap: 消息确认机制
 # 使用
 ```java
 // 本节点ip
